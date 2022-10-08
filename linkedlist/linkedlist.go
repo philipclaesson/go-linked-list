@@ -1,13 +1,8 @@
 package linkedlist
 
 import (
-	"fmt"
 	"strconv"
 )
-
-func PrintHello() {
-	fmt.Println("Hello, Modules! This is linkedlist speaking!")
-}
 
 type Node struct {
 	next *Node
