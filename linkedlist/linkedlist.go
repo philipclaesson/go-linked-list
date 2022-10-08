@@ -1,24 +1,22 @@
 package linkedlist
 
-import (
-	"strconv"
-)
+import "fmt"
 
 type Node struct {
 	next *Node
-	data int
+	data interface{}
 }
 
 type LinkedList struct {
 	head *Node
 }
 
-func (l *LinkedList) Add(i int) {
+func (l *LinkedList) Add(i interface{}) {
 	n := Node{nil, i}
 	l.add(n)
 }
 
-func (l *LinkedList) Remove(i int) bool {
+func (l *LinkedList) Remove(i interface{}) bool {
 	// a pointer to the next pointer of the previous node
 	var prev **Node = &l.head
 	for n := l.head; n != nil; n = n.next {
@@ -33,7 +31,7 @@ func (l *LinkedList) Remove(i int) bool {
 }
 
 func (l *LinkedList) add(new Node) {
-	// tailPointer a pointer to the last known next pointer
+	// tailPointer is a pointer to the last known next pointer
 	var tailPointer **Node
 
 	// traverse through list until we find the pointer that is pointing to a nil-pointer
@@ -47,7 +45,15 @@ func (l *LinkedList) add(new Node) {
 func (l LinkedList) String() string {
 	var s string = ""
 	for n := l.head; n != nil; n = n.next {
-		s += (strconv.Itoa(n.data) + " ")
+		s += (fmt.Sprint(n.data) + " ")
 	}
 	return s
+}
+
+func (l LinkedList) Length() int {
+	var length int = 0
+	for n := l.head; n != nil; n = n.next {
+		length++
+	}
+	return length
 }
