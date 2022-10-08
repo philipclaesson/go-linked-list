@@ -33,17 +33,15 @@ func (l *LinkedList) Remove(i int) bool {
 }
 
 func (l *LinkedList) add(new Node) {
-	// edge case: empty list
-	if l.head == nil {
-		l.head = &new
-		return
+	// tailPointer a pointer to the last known next pointer
+	var tailPointer **Node
+
+	// traverse through list until we find the pointer that is pointing to a nil-pointer
+	for tailPointer = &l.head; *tailPointer != nil; tailPointer = &(*tailPointer).next {
 	}
 
-	// traverse through list
-	var tail *Node
-	for tail = l.head; tail.next != nil; tail = tail.next {
-	}
-	tail.next = &new
+	// append to list by making the nil-pointer point at our new node
+	*tailPointer = &new
 }
 
 func (l LinkedList) String() string {
